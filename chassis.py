@@ -181,7 +181,7 @@ def render_stls():
     for key in to_render:
         print(f'Rendering {key}')
         scad_render_to_file(to_render[key], os.path.join(out_dir, 'to_render.scad'), file_header='$fn = %s;' % SEGMENTS)
-        os.system(f'openscad -o rendered/{key}.stl ./to_render.scad')
+        os.system(f'openscad -o stl/{key}.stl ./to_render.scad')
 
 if __name__ == '__main__':
     out_dir = sys.argv[1] if len(sys.argv) > 1 else os.curdir
