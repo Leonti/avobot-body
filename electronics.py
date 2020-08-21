@@ -8,14 +8,17 @@ import mounts
 
 nop = import_scad('lib.scad')
 nano = import_stl('nano.stl')
-nano_holder = translate([2, 2, -33])(rotate([0, 0, 90])(import_stl('nano_holder.stl')))
+nano_holder = translate([2, 2, -33])(rotate([0, 0, 90])
+                                     (import_stl('nano_holder.stl')))
 
 raspberry_pie = nop.rpi()
 
 motor_driver = color("red")(cube([20.05, 20.05, 1.6]))
 
-raspberry_pie_stand = cylinder(d = 2.3, h = 9)
-def raspberry_pie_stands(stand): 
+raspberry_pie_stand = cylinder(d=2.3, h=9)
+
+
+def raspberry_pie_stands(stand):
     return (
         translate([0, 0])(stand)
         + translate([0, 58])(stand)
@@ -23,9 +26,10 @@ def raspberry_pie_stands(stand):
         + translate([49, 0])(stand)
     )
 
+
 rpi_stands = (
-    raspberry_pie_stands(cylinder(d = 2.5, h = 12))
-    + raspberry_pie_stands(cylinder(d = 6, h = 6))
+    raspberry_pie_stands(cylinder(d=2.5, h=12))
+    + raspberry_pie_stands(cylinder(d=6, h=6))
 )
 
 motor_driver_stand = (
@@ -35,18 +39,18 @@ motor_driver_stand = (
 )
 
 powerstrip_stands = (
-    translate([0, 40, 0])(cylinder(d = 7, h = 10))
-    - translate([0, 40, 0])(cylinder(d = 2.3, h=11))
-    + translate([0, -20, 4])(cylinder(d = 7, h = 6))
+    translate([0, 40, 0])(cylinder(d=7, h=10))
+    - translate([0, 40, 0])(cylinder(d=2.3, h=11))
+    + translate([0, -20, 4])(cylinder(d=7, h=6))
     + translate([-3, -10, 0])(cube([6, 6, 4]))
     + translate([-3, -19, 4])(cube([6, 15, 4]))
-    - translate([0, -20, 0])(cylinder(d = 2.3, h=11))
+    - translate([0, -20, 0])(cylinder(d=2.3, h=11))
 )
 
 nano_holder_cut = translate([0, 0, -4])((
     nano_holder
     - translate([-1, -1, 0])(cube([100, 100, 4]))
-    ))
+))
 
 ELECTRONICS_STAND_WIDTH = 143
 ELECTRONICS_STAND_HEIGHT = 56
@@ -61,9 +65,9 @@ electronics_stand = color([1.0, 1.0, 1.0, 0.7])(
             [35, 0],
             [15, 0],
             [15, 7]
-            ])
+        ])
     )
-    + translate([17, ELECTRONICS_STAND_WIDTH + 5, 0])(cylinder(d = 10, h = 5))
+    + translate([17, ELECTRONICS_STAND_WIDTH + 5, 0])(cylinder(d=10, h=5))
     + translate([12, ELECTRONICS_STAND_WIDTH - 5, 0])(cube([10, 10, 2]))
     - translate([17, ELECTRONICS_STAND_WIDTH + 5, 2])(mounts.nut_hole)
     + translate([3.5, 81, 2])(rpi_stands)
@@ -71,7 +75,7 @@ electronics_stand = color([1.0, 1.0, 1.0, 0.7])(
     + translate([ELECTRONICS_STAND_HEIGHT - 8, 55, 2])(cube([8, 49, 4]))
     - translate([ELECTRONICS_STAND_HEIGHT - 12, 58, -1])(cube([13, 43, 5]))
     + translate([0, 7, 2])(nano_holder_cut)
-    + translate([25, 25, 2])(cylinder(d = 10, h = 3))
+    + translate([25, 25, 2])(cylinder(d=10, h=3))
     - translate([25, 25, 2])(mounts.nut_hole)
     + translate([26.5, 12, 2])(powerstrip_stands)
     - translate([8, 65, -1])(cube([40, 70, 4]))

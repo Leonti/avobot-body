@@ -1,0 +1,107 @@
+[
+  {
+    "name": "motors_stand",
+    "title": "Motors holder",
+    "desc": "Central part of the robot body, make sure to either print with 100%% infill or\n     with sufficiently thick walls. I used 1.2mm.\n     Slide m3 screws at the top and use BlueTak or some glue to keep them from moving.   \n    "
+  },
+  {
+    "name": "battery_rear_holder",
+    "title": "Battery holder (rear)",
+    "desc": "Use screws that come with the caster to screw it to the PLA"
+  },
+  {
+    "name": "battery_front_stand",
+    "title": "Battery holder (front)",
+    "desc": ""
+  },
+  {
+    "name": "rplidar_stand",
+    "title": "Lidar Stand",
+    "desc": "Be careful when removing supports as it is pretty thin and might break"
+  },
+  {
+    "name": "cover_back_left",
+    "title": "Rear cover (left)",
+    "desc": ""
+  },
+  {
+    "name": "cover_back_right",
+    "title": "Rear cover (right)",
+    "desc": ""
+  },
+  {
+    "name": "cover_back_top_plate",
+    "title": "Top plate for rear cover",
+    "desc": ""
+  },
+  {
+    "name": "cover_front_left",
+    "title": "Front cover (left)",
+    "desc": ""
+  },
+  {
+    "name": "cover_front_right",
+    "title": "Front cover (right)",
+    "desc": ""
+  },
+  {
+    "name": "cover_front_top_plate",
+    "title": "Top plate for front cover",
+    "desc": ""
+  },
+  {
+    "name": "cover_left_side_plate",
+    "title": "Left top cover",
+    "desc": "The LED hole is for 5mm LED, might need gentle filing for a tight fit"
+  },
+  {
+    "name": "cover_right_side_plate",
+    "title": "Right top cover",
+    "desc": ""
+  },
+  {
+    "name": "cover_front_left_support",
+    "title": "Left front cover support leg",
+    "desc": ""
+  },
+  {
+    "name": "cover_front_right_support",
+    "title": "Right front cover support leg",
+    "desc": ""
+  },
+  {
+    "name": "cover_front_support",
+    "title": "Bumper base",
+    "desc": "Make sure to clean up supports and file space underneth the switches so bumpers can move smoothly"
+  },
+  {
+    "name": "left_bumper",
+    "title": "Left bumper",
+    "desc": ""
+  },
+  {
+    "name": "right_bumper",
+    "title": "Right bumper",
+    "desc": ""
+  },
+  {
+    "name": "left_bumper_stopper",
+    "title": "Left bumper stopper",
+    "desc": "Make sure to clean it up as it is a tight fit"
+  },
+  {
+    "name": "right_bumper_stopper",
+    "title": "Right bumper stopper",
+    "desc": ""
+  },
+  {
+    "name": "cover_lidar_cover",
+    "title": "Lidar cover",
+    "desc": "It's wider on top to easily grab the robot by hand and move it if necessary"
+  },
+  {
+    "name": "acrylic_base",
+    "title": "Acrylic plate base",
+    "desc": "If you have a big enough printer print this, otherwise cut it out of an acrylic plate"
+  }
+]
