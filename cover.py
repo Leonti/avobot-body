@@ -3,6 +3,7 @@ import mounts
 import motors_stand
 from solid import *
 from solid.utils import *
+import lcd_case
 
 nuts_n_bolts = import_scad('/home/leonti/3d/openscad_libraries/nutsnbolts')
 
@@ -93,11 +94,34 @@ right_side_plate = (translate([0, 0, 72])(
 )
     - motors_stand.full_for_holes)
 
+usb_connector_hole = rotate([270, 0, 0])(cylinder(d = 3.7, h = 10))
+
+usb_connector_holes = (
+    usb_connector_hole
+    + translate([8.5, 0, 0])(usb_connector_hole)
+)
+
+usb_connector = (
+    cube([15, 1.6, 15])
+    + translate([3.5, 1.6, 10.5])(cube([8, 3, 10]))
+    - translate([3.2, -2, 5.8])(usb_connector_holes)
+)
+
+usb_connector_holder = translate([0, -4, 3])(
+    cube([15, 4, 12])
+    + translate([6.5, -7, 6])(cube([2, 7, 6]))
+    - translate([3.2, -2, 2.8])(usb_connector_holes)
+)
+
+def usb_connector_translate(part):
+    return translate([-7.5, -67, 57])(part)
+
 left_side_plate = (
     mirror([0, 1, 0])(right_side_plate)
-    - translate([45, -80, 71])(cylinder(d=6.2, h=4))
-    - translate([45, -70, 71])(cylinder(d=5, h=4))
-)
+    - translate([45, -70, 71])(cylinder(d=7, h=4))
+#    - usb_connector_translate(usb_connector)
+#    + usb_connector_translate(usb_connector_holder)
+) - lcd_case.full(True) + lcd_case.stands()
 
 front_top_plate = mirror([1, 0, 0])(back_top_plate)
 
