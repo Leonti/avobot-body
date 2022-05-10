@@ -11,6 +11,7 @@ import cover
 import motors_stand
 import electronics
 import lcd_case
+import power_button_case
 import mounts
 import json
 from functools import reduce
@@ -307,6 +308,9 @@ if __name__ == '__main__':
    # a = lcd_case.full(False) + lcd_case.stands()
     a = motors_stand.full + battery_with_lidar()
     a = motors_stand.full
+    a = cover.left_side_plate + power_button_case.full(False)
+    a = cover.left_side_plate + cover.lidar_cover + battery_with_lidar()
+    a = cover.lidar_cover
 
    # a = caster_mount()
     #a = electronics.full

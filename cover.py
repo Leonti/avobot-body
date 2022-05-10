@@ -4,6 +4,7 @@ import motors_stand
 from solid import *
 from solid.utils import *
 import lcd_case
+import power_button_case
 
 nuts_n_bolts = import_scad('/home/leonti/3d/openscad_libraries/nutsnbolts')
 
@@ -118,10 +119,10 @@ def usb_connector_translate(part):
 
 left_side_plate = (
     mirror([0, 1, 0])(right_side_plate)
-    - translate([45, -70, 71])(cylinder(d=7, h=4))
+#    - translate([45, -70, 71])(cylinder(d=7, h=4))
 #    - usb_connector_translate(usb_connector)
 #    + usb_connector_translate(usb_connector_holder)
-) - lcd_case.full(True) + lcd_case.stands()
+) - lcd_case.full(True) + lcd_case.stands() - power_button_case.full(True) + power_button_case.stands
 
 front_top_plate = mirror([1, 0, 0])(back_top_plate)
 
@@ -278,19 +279,39 @@ def connector(length, type='all'):
 
 connector_test = connector(length=15, type='all')
 
-lidar_cover = translate([22, 0, 73.5])(
-    translate([-67, -40, 0])(
-        cube([105, 80, 34])
-        - translate([1.5, 1.5, -1])(cube([105 - 3, 80 - 3, 34 - 1.5 + 1]))
+def create_lidar_cover():
+    outer_cover = hull()(translate([-1, 0, 0])(cylinder(d = 90, h = 29))
+        + translate([-46.5, 0, 0])(cylinder(d = 44, h = 29)))
+    
+    skirt = hull()(translate([-1, 0, 0])(cylinder(d = 90 + 35, h = 1.5))
+        + translate([-26.5, -55, 0])(cylinder(d = 15, h = 1.5))
+        + translate([-26.5, 55, 0])(cylinder(d = 15, h = 1.5))
+        + translate([-46.5, 0, 0])(cylinder(d = 44 + 35, h = 1.5)))
+
+    upper_skirt = (translate([-1, 0, 29-5])(hull()(translate([-1, 0, 0])(cylinder(d = 90 + 10, h = 5))
+        + translate([-46.5, 0, 0])(cylinder(d = 44 + 10, h = 5)))))
+
+    cover = (
+  #  translate([-67, -40, 0])(
+  #      cube([105, 80, 29])
+  #      - translate([1.5, 1.5, -1])(cube([105 - 3, 80 - 3, 29 - 1.5 + 1]))
+  #  )
+  #  + translate([-82, -60, 0])(
+  #      cube([120, 120, 1.5])
+  #      - translate([16, 21.5, -1])(cube([105, 80 - 3, 10]))
+  #  )
+  #  - translate([-1, 0, 25])(cylinder(d=75, h=7))
+    skirt
+    + outer_cover
+    + upper_skirt
+    - hull()(translate([-1, 0, -1])(cylinder(d = 90 - 3, h = 29 - 0.5))
+        + translate([-46.5, 0, -1])(cylinder(d = 44 - 3, h = 29 - 0.5)))
+    - translate([-1, 0, 25])(cylinder(d=75, h=7))
     )
-    + translate([-82, -60, 0])(
-        cube([120, 120, 1.5])
-        - translate([16, 21.5, -1])(cube([105, 80 - 3, 10]))
-    )
-    - translate([-1, 0, 30])(cylinder(d=75, h=7))
-    + translate([-67, -46, 28])(cube([105, 6, 6]))
-    + translate([-67, 40, 28])(cube([105, 6, 6]))
-) - motors_stand.full_for_holes
+
+    return translate([7, 0, 73.5])(cover) - motors_stand.full_for_holes 
+
+lidar_cover = create_lidar_cover()
 
 full = (
     back_left
